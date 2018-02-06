@@ -10,12 +10,39 @@ package assignmenttwotrolls;
  * @author ruebush.elliott
  */
 public class ElliottTroll {
-
+    private double personalAmount;
+    private static double totalAmountCollected;
+    
     /**
-     * @param args the command line arguments
+     * Adds the specified amount of money to both the individual troll object 
+     * collecting the money and to the total amount of money collected.
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public void collect(double x) {
+        this.personalAmount += x;
+        totalAmountCollected += x;
+    }
+    
+    /**
+     * Returns the amount of money that a single troll object possesses
+     * @return personalAmount 
+     */
+    public double myMoney(){
+        return this.personalAmount;
+    }
+    
+    /**
+     * Returns the current total amount of money collected
+     * @return totalAmountcollected
+     */
+    public static double treasury(){
+        return totalAmountCollected;
+    }
+    
+    /**
+     * Sets the total amount collected equal to 0
+     */
+    public static void emptyTreasury(){
+        totalAmountCollected = 0;
     }
     
 }
