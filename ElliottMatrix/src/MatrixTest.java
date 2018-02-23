@@ -25,12 +25,13 @@ public class MatrixTest {
             printMatrix(ElliottMatrix.add(FirstTestMatrix, SecondTestMatrix));
             System.out.println("Subtracted: ");
             printMatrix(ElliottMatrix.sub(FirstTestMatrix, SecondTestMatrix));
-            System.out.println("Matrix multiplied: ");
-            printMatrix(ElliottMatrix.mult(FirstTestMatrix, SecondTestMatrix));
             System.out.println("Scalar multiplied: ");
             printMatrix(ElliottMatrix.mult(FirstTestMatrix, 3));
             System.out.println("Transposed: ");
-            printMatrix(ElliottMatrix.transpose(FirstTestMatrix));
+            ElliottMatrix TransposedFirstMatrix = ElliottMatrix.transpose(FirstTestMatrix);
+            printMatrix(TransposedFirstMatrix);
+            System.out.println("Matrix multiplied: ");
+            printMatrix(ElliottMatrix.mult(FirstTestMatrix, TransposedFirstMatrix));
         }catch(MatrixException e){
             System.out.println("error with something " + e.getMessage());
         }

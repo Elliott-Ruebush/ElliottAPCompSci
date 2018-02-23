@@ -1,3 +1,7 @@
+/**
+ * Matrix class that allows for creation of matrices, getting and setting of values, addition, subtraction, scalar
+ * multiplication, matrix multiplication, and transposing.
+ */
 public class ElliottMatrix {
 
     private double[][] matrixArr;
@@ -5,6 +9,7 @@ public class ElliottMatrix {
     public int width;
 
     /**
+     * Constructs a matrix of the inputted size
      * @param rows
      * @param cols
      */
@@ -15,6 +20,8 @@ public class ElliottMatrix {
     }
 
     /**
+     * Sets the value of a point/coordinate/index/element/whatever of a matrix
+     *
      * @param row
      * @param col
      * @param val
@@ -28,7 +35,7 @@ public class ElliottMatrix {
     }
 
     /**
-     * Gets the value of a given
+     * Gets the value of a given point/coordinate/element/index/whatever (I don't know matrix terminology)
      *
      * @param row
      * @param col
@@ -87,7 +94,7 @@ public class ElliottMatrix {
     }
 
     /**
-     * TODO
+     * Multiplies two matrices together, throws error if inputs are null or cannot be multiplied together
      *
      * @param one
      * @param two
@@ -99,19 +106,15 @@ public class ElliottMatrix {
             throw new MatrixException("Cannot multiply matrices, either null parameters or incompatible matrices");
         }
         //Determine size of product matrix
-        int correctHeight = one.height;
-        int correctWidth = two.width;
+        int correctHeight = one.height - 1;
+        int correctWidth = two.width - 1;
         ElliottMatrix productMatrix = new ElliottMatrix(correctWidth, correctHeight);
 
-        for (int i = 1; i < productMatrix.height; i++) {
-            double[] FirstTemp = new double[one.width - 1];
-            for (int j = 1; j < productMatrix.width; j++) {
-                double[] SecondTemp = new double[two.height - 1];
+        for (int i = 1; i < one.height; i++) {
+            for (int j = 1; j < two.width; j++) {
                 double newVal = 0;
-                //Add the product of corresponding indices of our two arrays to the value that we will be adding
-                //to the final product matrix
-                for (int k = 0; k < FirstTemp.length; k++) {
-                    newVal += (FirstTemp[k] * SecondTemp[k]);
+                for (int k = 1; k < one.width; k++) {
+                    newVal += one.get(i, k) * two.get(k, j);
                 }
                 productMatrix.set(i, j, newVal);
             }
@@ -120,7 +123,7 @@ public class ElliottMatrix {
     }
 
     /**
-     * Performs scalar multiplication on a matrix using a given double
+     * Performs scalar multiplication on a matrix using a given double, throws error if input is null
      *
      * @param matrix
      * @param scalar
@@ -141,7 +144,7 @@ public class ElliottMatrix {
     }
 
     /**
-     * TODO
+     * Returns a transposed matrix, throws error if the inputted matrix is null
      *
      * @param matrix
      * @return ElliottMatrix transposedMatrix
